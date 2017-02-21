@@ -1,0 +1,214 @@
+$primary-color: #92806A;
+$secondary-color:  #E2E2B6;
+$eye-color: #000;
+$nose-color: #000;
+$mouth-color: #000;
+$light-color: #fff;
+$bg-color: #51835c;	// green
+// $bg-color: #FBFB9D;	// yellow
+// $bg-color: #59093E; // purple
+
+body {
+	background-color: $bg-color;
+}
+
+.shadow {
+	box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+}
+
+.bear {
+	margin: 150px auto;
+	width: 300px;
+	height: auto;
+	position: relative;
+}
+.ear {
+	width: 90px;
+	height: 90px;
+	border-radius: 50%;
+	background-color: $primary-color;
+	position: absolute;
+
+	.inner-ear {
+		width: 50%;
+		height: 50%;
+		border-radius: 50%;
+		background-color: $secondary-color;
+		position: relative;
+		top: 20px;
+		left: calc(50% / 2);
+	}
+}
+.left-ear {
+	@extend .ear;
+	top: 15px;
+	left: 15px;
+}
+.right-ear {
+	@extend .ear;
+	top: 0;
+	right: 20px;
+}
+
+.head {
+	margin: auto;	
+	width: 200px;
+	height: 210px;
+	border-top-left-radius: 35%;
+	border-top-right-radius: 35%;
+	background-color: $primary-color;
+	display: inline-block;
+	position: relative;
+	top: 30px;
+	left: (300px - 200px) / 2;
+}
+.head::before {
+	content: "";
+	width: 20px;
+	height: 150px;
+	border-top-left-radius: 60%;
+	background-color: $primary-color;
+	position: absolute;
+	bottom: 0;
+	left: -4px;
+	-webkit-clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 0% 100%);
+	-moz-clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 0% 100%);
+	-o-clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 0% 100%);
+	-ms-clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 0% 100%);
+	clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 0% 100%);
+}
+.head::after {
+	content: "";
+	width: 20px;
+	height: 160px;
+	border-top-right-radius: 60%;
+	background-color: $primary-color;
+	position: absolute;
+	bottom: 0;
+	right: -6px;
+	-webkit-clip-path: polygon(0 0, 65% 0, 100% 100%, 0 100%);
+	-moz-clip-path: polygon(0 0, 65% 0, 100% 100%, 0 100%);
+	-o-clip-path: polygon(0 0, 65% 0, 100% 100%, 0 100%);
+	-ms-clip-path: polygon(0 0, 65% 0, 100% 100%, 0 100%);
+	clip-path: polygon(0 0, 65% 0, 100% 100%, 0 100%);
+}
+
+.eyes {
+	width: 100%;
+	height: auto;
+	position: relative;
+	top: 60px;
+	left: 0;
+}
+.eye {
+	width: 20px;
+	height: 15px;
+	border-radius: 50%;
+	background-color: $eye-color;
+	display: inline-block;
+	position: absolute;
+	.eye-light {
+		width: 4px;
+		height: 2px;
+		border-radius: 5px;
+		background-color: $light-color;
+		position: absolute;
+		top: 3px;
+		right: 4px;
+	}
+}
+.left-eye {
+	@extend .eye;
+	left: 50px;
+}
+.right-eye {
+	@extend .eye;
+	right: 50px;
+}
+
+.hairs {
+	position: absolute;
+	top: 10px;
+	left: 40%;
+
+	.hair {
+		width: 3px;
+		height: 15px;
+		border-radius: 30%;
+		background-color: $secondary-color;
+		transform: rotate(20deg);
+		display: inline-block;
+		position: relative;
+		top: 0;
+		left: 10px;
+	}
+}
+
+.face {
+	width: 90px;
+	height: 110px;
+	border-radius: 45%;
+	border-bottom-left-radius: 30%;
+	border-bottom-right-radius: 30%;
+	background-color: $secondary-color;
+	position: relative;
+	top: 60px;
+	left: (200px - 90px) / 2;
+}
+.nose {
+	width: 50px;
+	height: 40px;
+	border-radius: 40%;
+	background-color: $nose-color;
+	position: relative;
+	top: 15px;
+	left: (90px - 50px) / 2;
+	z-index: 10;
+
+	.nose-light {
+		width: 10px;
+		height: 3px;
+		border-radius: 5px;
+		background-color: $light-color;
+		position: absolute;
+		top: 10px;
+		right: 12px;
+		z-index: 20;
+	}
+}
+.mouth {
+	position: relative;
+	top: 15px;
+	
+	.lip-line {
+		width: 5px;
+		height: 20px;
+		background-color: $mouth-color;
+		position: relative;
+		top: 0;
+		left: calc(50% - 5px / 2);
+		z-index: 10;
+	}
+	.lip-arc {
+		$circle-size: 40px;
+		position: absolute;
+		top: -3px;
+		width: 30px;
+		height: 30px;
+		border-radius: 50%;
+		border: 5px solid $mouth-color;
+		-webkit-clip-path: polygon(0 $circle-size/2, $circle-size $circle-size/2, $circle-size $circle-size, 0 $circle-size);
+		-moz-clip-path: polygon(0 $circle-size/2, $circle-size $circle-size/2, $circle-size $circle-size, 0 $circle-size);
+		-o-clip-path: polygon(0 $circle-size/2, $circle-size $circle-size/2, $circle-size $circle-size, 0 $circle-size);
+		-ms-clip-path: polygon(0 $circle-size/2, $circle-size $circle-size/2, $circle-size $circle-size, 0 $circle-size);
+		clip-path: polygon(0 $circle-size/2, $circle-size $circle-size/2, $circle-size $circle-size, 0 $circle-size);
+	}
+	.lip-arc-left {
+		@extend .lip-arc;
+		right: calc(50% - 2.5px);
+	}
+	.lip-arc-right {
+		@extend .lip-arc;
+		left: calc(50% - 2.5px);
+	}
+}

@@ -1,0 +1,180 @@
+body {
+  background-color: #51835c; }
+
+.shadow {
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3); }
+
+.bear {
+  margin: 150px auto;
+  width: 300px;
+  height: auto;
+  position: relative; }
+
+.ear, .left-ear, .right-ear {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background-color: #92806A;
+  position: absolute; }
+  .ear .inner-ear, .left-ear .inner-ear, .right-ear .inner-ear {
+    width: 50%;
+    height: 50%;
+    border-radius: 50%;
+    background-color: #E2E2B6;
+    position: relative;
+    top: 20px;
+    left: calc(50% / 2); }
+
+.left-ear {
+  top: 15px;
+  left: 15px; }
+
+.right-ear {
+  top: 0;
+  right: 20px; }
+
+.head {
+  margin: auto;
+  width: 200px;
+  height: 210px;
+  border-top-left-radius: 35%;
+  border-top-right-radius: 35%;
+  background-color: #92806A;
+  display: inline-block;
+  position: relative;
+  top: 30px;
+  left: 50px; }
+
+.head::before {
+  content: "";
+  width: 20px;
+  height: 150px;
+  border-top-left-radius: 60%;
+  background-color: #92806A;
+  position: absolute;
+  bottom: 0;
+  left: -4px;
+  -webkit-clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 0% 100%);
+  -moz-clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 0% 100%);
+  -o-clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 0% 100%);
+  -ms-clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 0% 100%);
+  clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 0% 100%); }
+
+.head::after {
+  content: "";
+  width: 20px;
+  height: 160px;
+  border-top-right-radius: 60%;
+  background-color: #92806A;
+  position: absolute;
+  bottom: 0;
+  right: -6px;
+  -webkit-clip-path: polygon(0 0, 65% 0, 100% 100%, 0 100%);
+  -moz-clip-path: polygon(0 0, 65% 0, 100% 100%, 0 100%);
+  -o-clip-path: polygon(0 0, 65% 0, 100% 100%, 0 100%);
+  -ms-clip-path: polygon(0 0, 65% 0, 100% 100%, 0 100%);
+  clip-path: polygon(0 0, 65% 0, 100% 100%, 0 100%); }
+
+.eyes {
+  width: 100%;
+  height: auto;
+  position: relative;
+  top: 60px;
+  left: 0; }
+
+.eye, .left-eye, .right-eye {
+  width: 20px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: #000;
+  display: inline-block;
+  position: absolute; }
+  .eye .eye-light, .left-eye .eye-light, .right-eye .eye-light {
+    width: 4px;
+    height: 2px;
+    border-radius: 5px;
+    background-color: #fff;
+    position: absolute;
+    top: 3px;
+    right: 4px; }
+
+.left-eye {
+  left: 50px; }
+
+.right-eye {
+  right: 50px; }
+
+.hairs {
+  position: absolute;
+  top: 10px;
+  left: 40%; }
+  .hairs .hair {
+    width: 3px;
+    height: 15px;
+    border-radius: 30%;
+    background-color: #E2E2B6;
+    transform: rotate(20deg);
+    display: inline-block;
+    position: relative;
+    top: 0;
+    left: 10px; }
+
+.face {
+  width: 90px;
+  height: 110px;
+  border-radius: 45%;
+  border-bottom-left-radius: 30%;
+  border-bottom-right-radius: 30%;
+  background-color: #E2E2B6;
+  position: relative;
+  top: 60px;
+  left: 55px; }
+
+.nose {
+  width: 50px;
+  height: 40px;
+  border-radius: 40%;
+  background-color: #000;
+  position: relative;
+  top: 15px;
+  left: 20px;
+  z-index: 10; }
+  .nose .nose-light {
+    width: 10px;
+    height: 3px;
+    border-radius: 5px;
+    background-color: #fff;
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    z-index: 20; }
+
+.mouth {
+  position: relative;
+  top: 15px; }
+  .mouth .lip-line {
+    width: 5px;
+    height: 20px;
+    background-color: #000;
+    position: relative;
+    top: 0;
+    left: calc(50% - 5px / 2);
+    z-index: 10; }
+  .mouth .lip-arc, .mouth .lip-arc-left, .mouth .lip-arc-right {
+    position: absolute;
+    top: -3px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 5px solid #000;
+    -webkit-clip-path: polygon(0 20px, 40px 20px, 40px 40px, 0 40px);
+    -moz-clip-path: polygon(0 20px, 40px 20px, 40px 40px, 0 40px);
+    -o-clip-path: polygon(0 20px, 40px 20px, 40px 40px, 0 40px);
+    -ms-clip-path: polygon(0 20px, 40px 20px, 40px 40px, 0 40px);
+    clip-path: polygon(0 20px, 40px 20px, 40px 40px, 0 40px); }
+  .mouth .lip-arc-left {
+    right: calc(50% - 2.5px); }
+  .mouth .lip-arc-right {
+    left: calc(50% - 2.5px); }
+
+/*# sourceMappingURL=bear.css.map */
