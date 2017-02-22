@@ -1,0 +1,440 @@
+// Canvas
+$canvas-width: 400px;
+$canvas-height: 350px;
+
+// Color
+// -- space
+$bg-color: #1f1c5d;
+$star-color: #d8d8d8;
+// -- helmet & tube
+$helmet-color: rgba(255,255,255,0.3); // (#fff + opacity 0.3)
+$helmet-light-color: rgba(251,251,251,0.68); //(#fbfbfb + opacity 0.68)
+$tube-color: #f9db1a;
+// -- head
+$head-color: #e6b435;
+$ear-color: $head-color;
+$eye-color: #1d1d1d;
+$face-color: #c6962d;
+$nose-color: #a07e43;
+$lip-color: $eye-color;
+$teeth-color: #fff;
+// -- hands
+$arm-color: #d2a020;
+$finger-color: $eye-color;
+// -- tail
+$tail-base-color: #ad770c;
+$tail-line-color: #e8c364;
+// -- shadow & space ship
+$shadow-color: rgba(0,0,0,0.17);	// (#000 + opacty 0.17)
+$space-ship-dark-color: #9a9999;
+$space-ship-light-color: #b7b5b5;
+
+// ------ Mixins -------
+@mixin clip-path($path) {
+	-webkit-clip-path: $path;
+	-moz-clip-path: $path;
+	-o-clip-path: $path;
+	-ms-clip-path: $path;
+	clip-path: $path;
+}
+@mixin shape-size($width, $height, $radius) {
+	width: $width;
+	height: $height;
+  	-webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    -ms-border-radius: $radius;
+    -o-border-radius: $radius;
+	border-radius: $radius;
+}
+@mixin position($pos-type, $top, $left) {
+	position: $pos-type;
+	top: $top;
+	left: $left;
+}
+@mixin position-top-L($pos-type, $top, $left) {
+	position: $pos-type;
+	top: $top;
+	left: $left;
+}
+@mixin position-top-R($pos-type, $top, $right) {
+	position: $pos-type;
+	top: $top;
+	right: $right;
+}
+@mixin stars($size, $x, $y) {
+	background-color: $star-color;
+	@include shape-size($size, $size, 50%);
+	@include position-top-L(absolute, $y, $x);
+}
+
+body {
+	background-color: $bg-color;
+}
+
+// ------ CSS Classes ------
+.container {
+	background-color: $bg-color;
+	width: $canvas-width;
+	height: $canvas-height;
+	@include clip-path(polygon(0 0, 100% 0, 100% 100%, 0 100%));
+	margin: 50px auto;
+	position: relative;
+}
+
+// --- Head ---
+.head {
+	background-color: $head-color;
+	margin: 0 auto;
+	position: absolute;
+	border-radius: 50%;
+	z-index: 10;
+}
+.head-portrait {
+	@extend .head;
+	$width: 160px; 	
+	width: $width;
+	height: 152px;
+	top: 90px;
+	left: ($canvas-width - $width) / 2;
+}
+.head-landscape {
+	@extend .head;
+	$width: 180px;
+	width: $width;
+	height: 115px;
+	top: 122px;
+	left: ($canvas-width - $width) / 2
+}
+
+// --- Ear ---
+.ear {
+	$length: 27px;
+	background-color: $ear-color;
+	width: $length;
+	height: $length;
+	border-radius: 50%;
+	position: absolute;
+	top: 80px;
+	top: 98px;
+
+	&::after {
+		content: "";
+		background-color: $face-color;
+		width: 60%;
+		height: 60%;
+		border-radius: 50%;
+		position: absolute;
+		top: 20%;
+		left: 20%;
+	}
+}
+.left-ear {
+	@extend .ear;
+	left: 40%;
+	left: 32%;
+}
+.right-ear {
+	@extend .ear;
+	right: 40%;
+	right: 32%;
+}
+
+// --- Eye ---
+.eye {
+	background-color: $eye-color;
+	width: 16px;
+	height: 12px;
+	border-radius: 50%;
+	position: absolute;
+	top: 44%;
+	z-index: 20;
+}
+.left-eye {
+	@extend .eye;
+	left: 42%;
+}
+.right-eye {
+	@extend .eye;
+	right: 42%;
+}
+
+// --- face ---
+$face-width: 56px;
+$face-height: 41px;
+.face {
+	$width: $face-width;
+	$height: $face-height;
+	background-color: $face-color;
+	@include shape-size($width, $height, 50%);
+	@include position(absolute, 173px, ($canvas-width - $width) / 2);
+	z-index: 20;
+}
+.nose {
+	$width: 28px;
+	$height: 20px;
+	background-color: $nose-color;
+	@include shape-size($width, $height, 50%);
+	@include position(absolute, -8px, ($face-width - $width) / 2);
+	z-index: 50;
+}
+
+// --- lips ---
+.lip-middle {
+	border: 2px solid $lip-color;
+	width: 0px;
+	height: 6px;
+	@include position(absolute, 10px, calc(50% - 2px));
+	z-index: 40;
+}
+.lip-arc {
+	$circle-size: 17px;
+	position: absolute;
+	// top: 7px;
+	top: 10px;
+	width: $circle-size;
+	height: $circle-size;
+	border-bottom-right-radius: 70%;
+	border: 4px solid $lip-color;
+	border-top: none transparent;
+	border-left: none transparent;
+	transform: rotate(45deg);
+	z-index: 40;
+}
+.lip-left {
+	@extend .lip-arc;
+	right: 53%;
+}
+.lip-right{
+	@extend .lip-arc;
+	left: 53%;
+}
+
+// --- teeth ---
+.tooth {
+	background-color: $teeth-color;
+	@include shape-size(10px, 22px, 3px);
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+	position: absolute;
+	top: 24px;
+	z-index: 30;
+}
+.left-tooth {
+	@extend .tooth;
+	border-top-left-radius: 5px;
+	right: 51%;
+}
+.right-tooth {
+	@extend .tooth;
+	border-top-right-radius: 5px;
+	left: 51%;
+}
+
+// --- hands ---
+.hand {
+	background-color: $arm-color;
+	@include shape-size(90px, 45px, 45%);
+	z-index: 20;
+}
+.left-hand {
+	@extend .hand;
+	@include position-top-L(absolute, 210px, 22%);
+	transform: rotate(30deg);
+}
+.right-hand {
+	@extend .hand;
+	@include position-top-R(absolute, 210px, 22%);
+	transform: rotate(-30deg);
+}
+// --- fingers ---
+$finger-1-pos-top: 15px;
+$finger-gap: 7px;
+$finger-pos-side: 82px;
+.finger {
+	background-color: $finger-color;
+	@include shape-size(15px, 4px, 2px);
+}
+.left-finger-1 {
+	@extend .finger;
+	@include position-top-L(absolute, $finger-1-pos-top + $finger-gap * 0, $finger-pos-side);
+}
+.left-finger-2 {
+	@extend .finger;
+	@include position-top-L(absolute, $finger-1-pos-top + $finger-gap * 1, $finger-pos-side);
+}
+.left-finger-3 {
+	@extend .finger;
+	@include position-top-L(absolute, $finger-1-pos-top + $finger-gap * 2, $finger-pos-side);
+}
+.right-finger-1 {
+	@extend .finger;
+	@include position-top-R(absolute, $finger-1-pos-top + $finger-gap * 0, $finger-pos-side);
+}
+.right-finger-2 {
+	@extend .finger;
+	@include position-top-R(absolute, $finger-1-pos-top + $finger-gap * 1, $finger-pos-side);
+}
+.right-finger-3 {
+	@extend .finger;
+	@include position-top-R(absolute, $finger-1-pos-top + $finger-gap * 2, $finger-pos-side);
+}
+
+// --- tail ---
+$tail-line-width: 4px;
+
+.tail {
+	background-color: $tail-base-color;
+	width: 58px;
+	height: 118px;
+	border-radius: 50%;
+	border-top-left-radius: 45%;
+	border-top-right-radius: 45%;
+	transform: rotate(-30deg);
+	@include position-top-L(absolute, 92px, 65px);
+}
+.tail-line {
+	background-color: $tail-line-color;
+	@include shape-size(40px, 7px, 2px);
+}
+// Top-left to bottom-right lines
+.line-L2R {
+	.tail-line-L2R-1 {
+		@extend .tail-line;
+		width: 40px;
+		transform: rotate(40deg);
+		@include position-top-L(absolute, 15px, 15px);
+	}
+	.tail-line-L2R-2 {
+		@extend .tail-line;
+		width: 60px;
+		transform: rotate(40deg);
+		@include position-top-L(absolute, 35px, 2px);
+	}
+	.tail-line-L2R-3 {
+		@extend .tail-line;
+		width: 50px;
+		transform: rotate(40deg);
+		@include position-top-L(absolute, 52px, -1px);
+	}
+}
+// Top-right to bottom-left lines
+.line-R2L {
+	.tail-line-R2L-1 {
+		@extend .tail-line;
+		width: 40px;
+		transform: rotate(-40deg);
+		@include position-top-R(absolute, 15px, 15px);
+	}
+	.tail-line-R2L-2 {
+		@extend .tail-line;
+		width: 60px;
+		transform: rotate(-40deg);
+		@include position-top-R(absolute, 35px, 2px);
+	}
+	.tail-line-R2L-3 {
+		@extend .tail-line;
+		width: 50px;
+		transform: rotate(-40deg);
+		@include position-top-R(absolute, 52px, -1px);
+	}
+}
+
+// --- Helmet ---
+.helmet {
+	$width: 230px;
+	$height: 210px;
+	background-color: $helmet-color; // opacity: 0.3
+	@include shape-size($width, $height, 50%);
+	@include position-top-L(absolute, 42px, ($canvas-width - $width) / 2);
+	z-index: 50;
+
+	&::before {
+		content: "";
+		background-color: $helmet-light-color;
+		@include shape-size(24px, 21px, 50%);
+		transform: rotate(-45deg);
+		@include position-top-R(absolute, 25px, 64px);
+		z-index: 60;
+	}
+
+	&::after {
+		content: "";
+		background-color: $helmet-light-color;
+		@include shape-size(28px, 40px, 50%);
+		transform: rotate(-43deg);
+		@include position-top-R(absolute, 37px, 33px);
+		z-index: 60;
+	}
+}
+.oxygen-tube {
+	border: 9px solid $tube-color;
+	@include shape-size(70px, 30px, 50%);
+	transform: rotate(-30deg);
+	@include position-top-R(absolute, 46%, 13%);
+}
+
+// --- Space ship ----
+.space-ship {
+	$outter-width: 460px;
+	$outter-height: 170px;
+	background-color: $space-ship-dark-color;
+	@include clip-path(ellipse(50% 50% at 50% 50%));
+	@include shape-size($outter-width, $outter-height, 50%);
+	@include position-top-L(absolute, 64%, ($canvas-width - $outter-width) / 2);
+	z-index: 0;
+
+	&::after {
+		$inner-width: $outter-width - 10px;
+		$inner-height: $outter-height - 10px;
+		content: "";
+		background-color: $space-ship-light-color;
+		@include shape-size($inner-width, $inner-height, 50%);
+		@include position-top-L(absolute, 10px, ($outter-width - $inner-width) / 2);
+		z-index: 1;	
+	}
+}
+
+.shadow {
+	background-color: $shadow-color;
+	width: 300px;
+	height: 180px;
+	transform: rotate(15deg);
+	@include clip-path(polygon(40% 0, 100% 0, 70% 100%, 0 100%, 0 55%));
+	@include position-top-L(absolute, -20px, 0px);
+	z-index: 5;
+}
+
+// --- Stars ---
+.star-1 {
+	@include stars(5px, 10%, 17%);
+}
+.star-2 {
+	@include stars(10px, 15%, 7%);
+}
+.star-3 {
+	@include stars(4px, 45%, 1%);
+}
+.star-4 {
+	@include stars(4px, 76%, 5%);
+}
+.star-5 {
+	@include stars(7px, 95%, 18%);
+}
+.star-6 {
+	@include stars(5px, 90%, 32%);
+}
+.star-7 {
+	@include stars(11px, 87%, 34%);
+}
+.star-8 {
+	@include stars(4px, 82%, 64%);
+}
+.star-9 {
+	@include stars(7px, 5%, 52%);
+}
+.star-10 {
+	@include stars(6.5px, 17%, 60%);
+}
+.star-11 {
+	@include stars(3px, 15.5%, 62%);
+}
