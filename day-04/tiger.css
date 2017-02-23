@@ -7,8 +7,8 @@ body {
   background-color: #AB4323; }
 
 .container {
-  width: 400px;
-  height: 400px;
+  width: 200px;
+  height: 200px;
   margin: 100px auto;
   position: relative; }
 
@@ -20,12 +20,12 @@ body {
   border-bottom-right-radius: 80px;
   position: absolute;
   top: 1px;
-  left: 110px; }
+  left: 10px; }
 
 .furs {
   position: absolute;
   top: 120px;
-  left: 114px;
+  left: 14px;
   z-index: 10; }
   .furs .fur, .furs .fur-1, .furs .fur-2, .furs .fur-3 {
     width: 0;
@@ -56,7 +56,7 @@ body {
   border: 10px solid #ED7622;
   position: absolute;
   top: 0;
-  left: 110px; }
+  left: 10px; }
   .head .eye .eye-frame {
     width: 80px;
     height: 80px;
