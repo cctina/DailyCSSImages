@@ -1,0 +1,164 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0; }
+
+body {
+  background-color: #AB4323; }
+
+.container {
+  width: 400px;
+  height: 400px;
+  margin: 100px auto;
+  position: relative; }
+
+.ear {
+  background-color: #FBB931;
+  width: 80px;
+  height: 40px;
+  border-bottom-left-radius: 80px;
+  border-bottom-right-radius: 80px;
+  position: absolute;
+  top: 1px;
+  left: 110px; }
+
+.furs {
+  position: absolute;
+  top: 120px;
+  left: 114px;
+  z-index: 10; }
+  .furs .fur, .furs .fur-1, .furs .fur-2, .furs .fur-3 {
+    width: 0;
+    height: 0;
+    border-right: 15px solid #ED7622;
+    border-top: 13px solid transparent;
+    border-bottom: 0px solid transparent;
+    transform: rotate(-10deg); }
+  .furs .fur-1 {
+    position: absolute;
+    top: 0px;
+    right: 0px; }
+  .furs .fur-2 {
+    position: absolute;
+    top: 13px;
+    right: 0px; }
+  .furs .fur-3 {
+    position: absolute;
+    top: 26px;
+    right: 0px; }
+
+.head {
+  background-color: #fefecc;
+  width: 180px;
+  height: 180px;
+  border-top-left-radius: 50%;
+  border-top-right-radius: 50%;
+  border: 10px solid #ED7622;
+  position: absolute;
+  top: 0;
+  left: 110px; }
+  .head .eye .eye-frame {
+    width: 80px;
+    height: 80px;
+    border-top-right-radius: 60%;
+    border-bottom-left-radius: 60%;
+    border: 9.5px solid #FBB931;
+    transform: rotate(-8deg);
+    position: absolute;
+    top: 37px;
+    right: -2px;
+    animation-name: eye-blink;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+    animation-direction: normal; }
+  .head .eye .eye-ball {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: 10px solid #ED7622;
+    position: absolute;
+    top: 3px;
+    left: 3px; }
+    .head .eye .eye-ball::after {
+      content: "";
+      background-color: #FBB931;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      position: absolute;
+      top: 13px;
+      left: 13px; }
+  .head .lines .line, .head .lines .line-1, .head .lines .line-2, .head .lines .line-3, .head .lines .line-4 {
+    width: 0;
+    height: 0; }
+  .head .lines .line-1 {
+    border-top: 43px solid #FBB931;
+    border-left: 6px solid transparent;
+    border-right: 10px solid transparent;
+    transform: rotate(52deg) skewY(-8deg);
+    position: absolute;
+    top: -11px;
+    left: 74px; }
+  .head .lines .line-2 {
+    border-top: 60px solid #FBB931;
+    border-left: 6px solid transparent;
+    border-right: 10px solid transparent;
+    transform: rotate(77deg) skewY(-12deg);
+    position: absolute;
+    top: -9px;
+    left: 96px; }
+  .head .lines .line-3 {
+    border-bottom: 60px solid #FBB931;
+    border-left: 5px solid transparent;
+    border-right: 12px solid transparent;
+    transform: rotate(-12deg);
+    position: absolute;
+    bottom: -5px;
+    left: 35px; }
+  .head .lines .line-4 {
+    border-bottom: 90px solid #FBB931;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    transform: rotate(-38deg) skewY(30deg);
+    position: absolute;
+    bottom: -12px;
+    left: 60px; }
+  .head .mouth-dots .dot, .head .mouth-dots .dot-1, .head .mouth-dots .dot-2, .head .mouth-dots .dot-3, .head .mouth-dots .dot-4, .head .mouth-dots .dot-5 {
+    background-color: #FBB931;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%; }
+  .head .mouth-dots .dot-1 {
+    position: absolute;
+    bottom: 5px;
+    right: 10px; }
+  .head .mouth-dots .dot-2 {
+    position: absolute;
+    bottom: 13px;
+    right: 17px; }
+  .head .mouth-dots .dot-3 {
+    position: absolute;
+    bottom: 21px;
+    right: 7px; }
+  .head .mouth-dots .dot-4 {
+    position: absolute;
+    bottom: 27px;
+    right: 20px; }
+  .head .mouth-dots .dot-5 {
+    position: absolute;
+    bottom: 11px;
+    right: 33px; }
+
+@keyframes eye-blink {
+  0% {
+    transform: rotate(-8deg) scaleX(1) scaleY(1) skewY(0deg); }
+  60% {
+    transform: rotate(-8deg) scaleX(1) scaleY(1) skewY(0deg); }
+  61% {
+    transform: rotate(-52deg) scaleX(0) scaleY(0) skewY(90deg); }
+  63% {
+    transform: rotate(-8deg) scaleX(1) scaleY(1) skewY(0deg); }
+  100% {
+    transform: rotate(-8deg) scaleX(1) scaleY(1) skewY(0deg); } }
+
+/*# sourceMappingURL=tiger.css.map */

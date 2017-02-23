@@ -1,0 +1,233 @@
+// ------ Varibales ------
+// (1) Sizes
+// Canvas
+$canvas-width: 400px;
+$canvas-height: 400px;
+// Stroke
+$stroke-width: 10px;
+// Head
+$head-width: 180px;
+$head-height: 180px;
+
+//(2) Colors
+// tiger color: Theme 1
+$bg-color: #AB4323;				// dark red
+$tiger-dark-color: #ED7622; 	// orange
+$tiger-light-color: #FBB931; 	// yellow
+// tiger color: Theme 2
+// $bg-color: #FBB931;				// yellow
+// $tiger-dark-color:  #ED7622; 	// orange
+// $tiger-light-color: $tiger-dark-color;	//orange
+// ---
+$tiger-bg-color: #fefecc;		// light yellow (almost white)
+
+// ------ Mixins (Global) ------
+@mixin position-corner-top-left($pos-type, $distTop, $distLeft) {
+	position: $pos-type;
+	top: $distTop;
+	left: $distLeft;
+}
+@mixin position-corner-top-right($pos-type, $distTop, $distRight) {
+	position: $pos-type;
+	top: $distTop;
+	right: $distRight;
+}
+@mixin position-corner-bottom-left($pos-type, $distBottom, $distLeft) {
+	position: $pos-type;
+	bottom: $distBottom;
+	left: $distLeft;
+}
+@mixin position-corner-bottom-right($pos-type, $distBottom, $distRight) {
+	position: $pos-type;
+	bottom: $distBottom;
+	right: $distRight;
+}
+
+// ------ CSS Classes ------
+*, *::before, *::after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background-color: $bg-color;
+}
+
+.container {
+	width: $canvas-width;
+	height: $canvas-height;
+	margin: 100px auto;
+	position: relative;
+}
+
+.ear {
+	background-color: $tiger-light-color;
+	width: ($head-width - $stroke-width * 2) / 2;
+	height: ($head-width -$stroke-width * 2) / 4;
+	border-bottom-left-radius: 80px;
+	border-bottom-right-radius: 80px;
+	@include position-corner-top-left(absolute, 1px, ($canvas-width - $head-width) / 2);
+}
+
+.furs {
+	@include position-corner-top-left(absolute, 120px, ($canvas-width - $head-width) / 2 + 4px);
+	z-index: 10;
+
+	.fur {
+		width: 0;
+		height: 0;
+		border-right: 15px solid $tiger-dark-color;
+		border-top: ($stroke-width + 3px) solid transparent;
+		border-bottom: 0px solid transparent;
+		transform: rotate(-10deg);
+	}
+
+	@mixin fur($number, $posTop, $posRight) {
+		.fur-#{$number} {
+			@extend .fur;
+			@include position-corner-top-right(absolute, $posTop, $posRight);
+		}
+	}
+	// .fur-1 ~ .fur-3
+	@include fur(1, 0px, 0px);
+	@include fur(2, 13px, 0px);
+	@include fur(3, 26px, 0px);
+}
+
+.head {
+	background-color: $tiger-bg-color;
+	width: $head-width;
+	height: $head-height;
+	border-top-left-radius: 50%;
+	border-top-right-radius: 50%;
+	border: $stroke-width solid $tiger-dark-color;
+	@include position-corner-top-left(absolute, 0, ($canvas-width - $head-width) / 2);
+
+	.eye {
+		$eye-frame-size: 80px;
+		$eye-ball-size: $eye-frame-size - $stroke-width * 2 - 4px;
+		$eye-ball-dot-size: $stroke-width;
+		$eye-ball-dot-pos: ($eye-ball-size - $eye-ball-dot-size - $stroke-width * 2) / 2;
+
+		.eye-frame {
+			width: $eye-frame-size;
+			height: $eye-frame-size;
+			border-top-right-radius: 60%;
+			border-bottom-left-radius: 60%;
+			border: ($stroke-width - 0.5px) solid $tiger-light-color; 
+			transform: rotate(-8deg);
+			@include position-corner-top-right(absolute, 37px, -2px);
+			
+			// Animation
+			animation-name: eye-blink;
+			animation-duration: 4s;
+			animation-iteration-count: infinite;
+			animation-direction: normal;
+		}
+		// Test only
+		// .eye-frame-base {
+		// 	@extend .eye-frame;
+		// 	border: ($stroke-width - 0.5px) solid #000; 
+		// 	transform: rotate(-8deg);
+		// }
+		.eye-ball {
+			width: $eye-ball-size;
+			height: $eye-ball-size;
+			border-radius: 50%;
+			border: $stroke-width solid $tiger-dark-color; 
+			@include position-corner-top-left(absolute, 3px, 3px);
+			
+			&::after {
+				content: "";
+				background-color: $tiger-light-color;
+				width: $eye-ball-dot-size;
+				height: $eye-ball-dot-size;
+				border-radius: 50%;
+				@include position-corner-top-left(absolute, $eye-ball-dot-pos, $eye-ball-dot-pos);
+			}
+		}
+	}
+	
+	.lines {
+		.line {
+			width: 0;
+			height: 0;
+		}
+		.line-1 {
+			// @ top-left
+			@extend .line;
+			border-top: 43px solid $tiger-light-color;
+			border-left: 6px solid transparent;
+			border-right: $stroke-width solid transparent;
+			transform: rotate(52deg) skewY(-8deg);
+			@include position-corner-top-left(absolute, -11px, $head-width / 2 - 16px);
+		}
+		.line-2 {
+			// @ top-right
+			@extend .line;
+			border-top: 60px solid $tiger-light-color;
+			border-left: 6px solid transparent;
+			border-right: $stroke-width solid transparent;
+			transform: rotate(77deg) skewY(-12deg);
+			@include position-corner-top-left(absolute, -9px, $head-width / 2 + 6px);
+		}
+		.line-3 {
+			// @ bottom-left
+			@extend .line;
+			border-bottom: 60px solid $tiger-light-color;
+			border-left: 5px solid transparent;
+			border-right: ($stroke-width + 2px) solid transparent;
+			transform: rotate(-12deg);
+			@include position-corner-bottom-left(absolute, -5px, 35px);
+		}
+		.line-4 {
+			// @ bottom-right
+			@extend .line;
+			border-bottom: 90px solid $tiger-light-color;
+			border-left: ($stroke-width) solid transparent;
+			border-right: $stroke-width solid transparent;
+			transform: rotate(-38deg) skewY(30deg);
+			@include position-corner-bottom-left(absolute, -12px, 60px);
+		}
+	}
+
+	.mouth-dots {
+		$mouth-dot-size: ($stroke-width - 1px);
+		
+		.dot {
+			background-color: $tiger-light-color;
+			width: $mouth-dot-size;
+			height: $mouth-dot-size;
+			border-radius: 50%;
+		}
+
+		@mixin dot($number, $posBottom, $posRight) {
+			.dot-#{$number} {
+				@extend .dot;
+				@include position-corner-bottom-right(absolute, $posBottom, $posRight);
+			}
+		};
+
+		// .dot-1 ~ .dot-5
+		// dot(number, bottom, right)
+		@include dot(1, 5px, 10px);
+		@include dot(2, 13px, 17px);
+		@include dot(3, 21px, 7px);
+		@include dot(4, 27px, 20px);
+		@include dot(5, 11px, 33px);
+	}
+
+}
+
+@keyframes eye-blink {
+		// transform: rotate(-8deg) scaleX(1) scaleY(1) skewY(0deg);
+		// transform: rotate(-20deg) scaleX(0.8) scaleY(0.8) skewY(25deg);	// 60-70%
+		// transform: rotate(-32deg) scaleX(0.5) scaleY(0.5) skewY(60deg); // 10%
+		// transform: rotate(-44deg) scaleX(0.2) scaleY(0.2) skewY(80deg); // 0%
+	  0% { transform: rotate(-8deg) scaleX(1) scaleY(1) skewY(0deg); }
+	 60% { transform: rotate(-8deg) scaleX(1) scaleY(1) skewY(0deg); } 			// 100%
+	 61% { transform: rotate(-52deg) scaleX(0) scaleY(0) skewY(90deg); } 		// 0%
+	 63% { transform: rotate(-8deg) scaleX(1) scaleY(1) skewY(0deg); } 			// 100%
+	100% { transform: rotate(-8deg) scaleX(1) scaleY(1) skewY(0deg); } 			// 100%
+}
