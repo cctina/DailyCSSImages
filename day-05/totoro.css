@@ -1,0 +1,356 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0; }
+
+body {
+  background-color: #ffd;
+  font-family: 'Architects Daughter', cursive; }
+
+.container {
+  width: 400px;
+  height: 350px;
+  margin: 50px auto 0 auto;
+  position: relative; }
+
+.title {
+  width: 400px;
+  height: auto;
+  padding: 0 60px;
+  margin: 0 auto;
+  position: relative; }
+
+.ears .ear, .ears .left-ear, .ears .right-ear {
+  background-color: #737160;
+  width: 34px;
+  height: 58px;
+  border-radius: 50% 50% 30% 30%; }
+  .ears .ear::after, .ears .left-ear::after, .ears .right-ear::after {
+    content: "";
+    background-color: #737160;
+    width: 16px;
+    height: 25px;
+    position: absolute;
+    top: 50px;
+    bottom: unset;
+    left: 9px;
+    right: unset; }
+.ears .left-ear {
+  transform: rotate(-5deg) skew(-5deg, -15deg);
+  position: absolute;
+  top: 30px;
+  bottom: unset;
+  left: 135px;
+  right: unset; }
+.ears .right-ear {
+  transform: rotate(15deg) skew(5deg, 15deg);
+  position: absolute;
+  top: 32px;
+  bottom: unset;
+  left: unset;
+  right: 125px; }
+
+.head {
+  background-color: #737160;
+  width: 180px;
+  height: 110px;
+  border-radius: 80px 80px 0 0;
+  position: absolute;
+  top: 80px;
+  bottom: unset;
+  left: 110px;
+  right: unset;
+  z-index: 10; }
+
+.cheeks .left-cheek {
+  background-color: #737160;
+  width: 33px;
+  height: 45px;
+  border-radius: 50%;
+  transform: rotate(7deg);
+  position: absolute;
+  top: 74px;
+  bottom: unset;
+  left: -2px;
+  right: unset; }
+.cheeks .right-cheek {
+  background-color: #737160;
+  width: 33px;
+  height: 52px;
+  border-radius: 50%;
+  transform: rotate(-11deg);
+  position: absolute;
+  top: 55px;
+  bottom: unset;
+  left: unset;
+  right: -5px; }
+
+.eyes .eye, .eyes .left-eye, .eyes .right-eye {
+  background-color: #d4d8dc;
+  width: 28px;
+  height: 26px;
+  border-radius: 47%; }
+  .eyes .eye .eye-ball, .eyes .left-eye .eye-ball, .eyes .right-eye .eye-ball, .eyes .left-eye .left-eye-ball, .eyes .right-eye .right-eye-ball {
+    background-color: #000;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%; }
+    .eyes .eye .eye-ball::after, .eyes .left-eye .eye-ball::after, .eyes .right-eye .eye-ball::after, .eyes .left-eye .left-eye-ball::after, .eyes .right-eye .right-eye-ball::after {
+      content: "";
+      background-color: #d4d8dc;
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      position: absolute;
+      top: 3px;
+      bottom: unset;
+      left: 2px;
+      right: unset; }
+.eyes .left-eye {
+  position: absolute;
+  top: 38px;
+  bottom: unset;
+  left: 34px;
+  right: unset; }
+  .eyes .left-eye .left-eye-ball {
+    position: absolute;
+    top: 7px;
+    bottom: unset;
+    left: 11px;
+    right: unset; }
+.eyes .right-eye {
+  position: absolute;
+  top: 38px;
+  bottom: unset;
+  left: unset;
+  right: 24px; }
+  .eyes .right-eye .right-eye-ball {
+    position: absolute;
+    top: 7px;
+    bottom: unset;
+    left: unset;
+    right: 11px; }
+
+.nose {
+  background-color: #000;
+  width: 25px;
+  height: 7px;
+  border-radius: 50%;
+  position: absolute;
+  top: 54px;
+  bottom: unset;
+  left: 86px;
+  right: unset; }
+  .nose::after {
+    content: "";
+    width: 0;
+    height: 0;
+    border-top: 7px solid #000;
+    border-left: 12.5px solid transparent;
+    border-right: 12.5px solid transparent;
+    position: absolute;
+    top: 3px;
+    bottom: unset;
+    left: 1px;
+    right: unset; }
+
+.mouth {
+  background-color: #000;
+  width: 6px;
+  height: 2px;
+  border-radius: 6px 6px 10% 10%;
+  transform: rotate(-20deg);
+  position: absolute;
+  top: 96px;
+  bottom: unset;
+  left: 95px;
+  right: unset; }
+
+.left-whiskers .left-whisker-1 {
+  width: 45px;
+  height: 20px;
+  border-radius: 30%;
+  border: 0px solid transparent;
+  border-top: 4px solid #60626b;
+  transform: rotate(45deg) skewX(-10deg) skewY(-35deg);
+  position: absolute;
+  top: 62px;
+  bottom: unset;
+  left: unset;
+  right: 169px; }
+.left-whiskers .left-whisker-2 {
+  width: 50px;
+  height: 20px;
+  border-radius: 30%;
+  border: 0px solid transparent;
+  border-top: 4px solid #60626b;
+  transform: rotate(40deg) skewX(-10deg) skewY(-35deg);
+  position: absolute;
+  top: 74px;
+  bottom: unset;
+  left: unset;
+  right: 173px; }
+.left-whiskers .left-whisker-3 {
+  width: 45px;
+  height: 20px;
+  border-radius: 30%;
+  border: 0px solid transparent;
+  border-top: 4px solid #60626b;
+  transform: rotate(25deg) skewX(-10deg) skewY(-35deg);
+  position: absolute;
+  top: 86px;
+  bottom: unset;
+  left: unset;
+  right: 177px; }
+
+.right-whiskers .right-whisker-1 {
+  width: 40px;
+  height: 20px;
+  border-radius: 30%;
+  border: 0px solid transparent;
+  border-top: 4px solid #60626b;
+  transform: rotate(-50deg) skewX(10deg) skewY(35deg);
+  position: absolute;
+  top: 62px;
+  bottom: unset;
+  left: 179px;
+  right: unset; }
+.right-whiskers .right-whisker-2 {
+  width: 50px;
+  height: 20px;
+  border-radius: 30%;
+  border: 0px solid transparent;
+  border-top: 4px solid #60626b;
+  transform: rotate(-35deg) skewX(10deg) skewY(35deg);
+  position: absolute;
+  top: 74px;
+  bottom: unset;
+  left: 183px;
+  right: unset; }
+.right-whiskers .right-whisker-3 {
+  width: 45px;
+  height: 20px;
+  border-radius: 30%;
+  border: 0px solid transparent;
+  border-top: 4px solid #60626b;
+  transform: rotate(-30deg) skewX(10deg) skewY(35deg);
+  position: absolute;
+  top: 86px;
+  bottom: unset;
+  left: 187px;
+  right: unset; }
+
+.body {
+  background-color: #737160;
+  width: 275px;
+  height: 320px;
+  border-radius: 50% 50% 50% 50%;
+  position: absolute;
+  top: 130px;
+  bottom: unset;
+  left: 62.5px;
+  right: unset; }
+  .body::after {
+    content: "";
+    background-color: #ffd;
+    width: 100%;
+    height: 32%;
+    position: absolute;
+    top: unset;
+    bottom: 0px;
+    left: 0;
+    right: unset; }
+
+.belly {
+  background-color: #ffd;
+  width: 210px;
+  height: 235px;
+  border-radius: 50% 50% 30% 30%;
+  position: absolute;
+  top: 65px;
+  bottom: unset;
+  left: 37.5px;
+  right: unset; }
+
+.belly-furs .belly-fur, .belly-furs .belly-fur-1, .belly-furs .belly-fur-2, .belly-furs .belly-fur-3, .belly-furs .belly-fur-4, .belly-furs .belly-fur-5, .belly-furs .belly-fur-6, .belly-furs .belly-fur-7 {
+  background-color: #8a8879;
+  width: 36px;
+  height: 36px;
+  border-radius: 7px;
+  border-top-right-radius: 12px;
+  transform: rotate(-45deg); }
+  .belly-furs .belly-fur::after, .belly-furs .belly-fur-1::after, .belly-furs .belly-fur-2::after, .belly-furs .belly-fur-3::after, .belly-furs .belly-fur-4::after, .belly-furs .belly-fur-5::after, .belly-furs .belly-fur-6::after, .belly-furs .belly-fur-7::after {
+    content: "";
+    background-color: #ffd;
+    width: 35px;
+    height: 35px;
+    border-radius: 7px;
+    border-top-right-radius: 12px;
+    transform: skew(10deg, 10deg);
+    position: absolute;
+    top: unset;
+    bottom: -6px;
+    left: -6px;
+    right: unset; }
+.belly-furs .belly-fur-1 {
+  transform: rotate(-50deg) skew(10deg, -5deg) scale(0.75);
+  position: absolute;
+  top: 33px;
+  bottom: unset;
+  left: 35px;
+  right: unset; }
+.belly-furs .belly-fur-2 {
+  transform: rotate(-42deg) skew(10deg, 0deg) scale(0.8);
+  position: absolute;
+  top: 23px;
+  bottom: unset;
+  left: 85px;
+  right: unset; }
+.belly-furs .belly-fur-3 {
+  transform: rotate(-40deg) skew(-5deg, 10deg) scale(0.75);
+  position: absolute;
+  top: 30px;
+  bottom: unset;
+  left: unset;
+  right: 35px; }
+.belly-furs .belly-fur-4 {
+  transform: rotate(-75deg) skew(-10deg, 20deg) scale(0.6);
+  position: absolute;
+  top: 65px;
+  bottom: unset;
+  left: 20px;
+  right: unset; }
+.belly-furs .belly-fur-5 {
+  transform: rotate(-70deg) skew(-15deg, 20deg) scale(0.55);
+  position: absolute;
+  top: 55px;
+  bottom: unset;
+  left: 60px;
+  right: unset; }
+.belly-furs .belly-fur-6 {
+  transform: rotate(-60deg) skew(-15deg, 25deg) scale(0.6);
+  position: absolute;
+  top: 53px;
+  bottom: unset;
+  left: unset;
+  right: 67px; }
+.belly-furs .belly-fur-7 {
+  transform: rotate(-50deg) skew(-10deg, 20deg) scale(0.55);
+  position: absolute;
+  top: 63px;
+  bottom: unset;
+  left: unset;
+  right: 20px; }
+
+h1 {
+  color: #737160;
+  color: #000;
+  text-align: right;
+  font-size: 4.5rem;
+  font-weight: normal;
+  transform: rotate(-5deg);
+  position: relative;
+  top: -20px;
+  right: -5px; }
+
+/*# sourceMappingURL=totoro.css.map */
