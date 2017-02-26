@@ -1,0 +1,319 @@
+// ------ Varibales ------
+// (1) Sizes
+// canvas
+$canvas-width: 400px;
+$canvas-height: 350px;
+// Head
+$head-width: 180px;
+$head-height: 110px;
+// Body
+$body-width: 275px;
+$body-height: 320px;
+
+// (2) colors
+$bg-color: #ffd;
+$main-color: #737160;
+$stroke-color: #000;
+$eye-base-color: #d4d8dc;
+$eye-ball-color: $stroke-color;
+$whisker-color: #60626b;
+$belly-fur-color: #8a8879;
+
+// ------ Mixins (Global) ------
+@mixin position($pos-type, $distTop: unset, $distBottom: unset, $distLeft: unset, $distRight: unset) {
+	position: $pos-type;
+	top: $distTop;
+	bottom: $distBottom;
+	left: $distLeft;
+	right: $distRight;
+}
+
+// $isLeftSide=true/false; $lengthRate=number for multiplication; $rotateDeg=...deg
+@mixin whisker($isLeftSide, $number, $lengthScale: 1, $rotateDeg: 0deg) {
+	$based-width: 50px;
+	$based-rotateDeg: 35deg;
+	$className: "";
+
+	@if $isLeftSide {
+		$className: ".left-whisker";
+	} @else {
+		$className: ".right-whisker";
+	}
+
+	#{$className}-#{$number} {
+		width: $based-width * $lengthScale; //50px * n
+		height: 20px;
+		border-radius: 30%;
+		border: 0px solid transparent;
+		border-top: 4px solid $whisker-color;
+		@if $isLeftSide {
+			transform: rotate($based-rotateDeg + $rotateDeg) skewX(-10deg) skewY(-35deg);
+			@include position(absolute, 50px + $number * 12px, unset, unset, 165px + $number * 4px);
+		} @else {
+			transform: rotate(-1 * $based-rotateDeg + $rotateDeg) skewX(10deg) skewY(35deg);
+			@include position(absolute, 50px + $number * 12px, unset, 175px + $number * 4px, unset);
+		}
+	}
+}
+
+// ------ CSS Classes ------
+*, *::before, *::after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background-color: $bg-color;
+	font-family: 'Architects Daughter', cursive; //Google web font
+}
+
+.container {
+	width: $canvas-width;
+	height: $canvas-height;
+	margin: 50px auto 0 auto;
+	position: relative;
+}
+.title {
+	width: $canvas-width;
+	height: auto;
+	padding: 0 60px;
+	margin: 0 auto;
+	position: relative;
+}
+
+// Ears
+.ears {
+	$ear-width: 34px;
+	.ear {
+		background-color: $main-color;
+		width: $ear-width;
+		height: 58px;
+		border-radius: 50% 50% 30% 30%;
+		
+		&::after {
+			content: "";
+			background-color: $main-color;
+			width: 16px;
+			height: 25px;
+			@include position(absolute, 50px, unset, ($ear-width - 16px) / 2, unset);
+		}
+	}
+	.left-ear {
+		@extend .ear;
+		transform: rotate(-5deg) skew(-5deg,-15deg);
+		@include position(absolute, 30px, unset, ($canvas-width - $head-width) / 2 + 25px, unset);
+	}
+	.right-ear {
+		@extend .ear;
+		transform: rotate(15deg) skew(5deg, 15deg);
+		@include position(absolute, 32px, unset, unset, ($canvas-width - $head-width) / 2 + 15px);
+	}
+}
+
+// Head
+.head {
+	background-color: $main-color;
+	width: $head-width;
+	height: $head-height;
+	border-radius: 80px 80px 0 0;
+	@include position(absolute, 80px, unset, ($canvas-width - $head-width) / 2, unset);
+	z-index: 10;
+}
+.cheeks {
+	.left-cheek {
+		background-color: $main-color;
+		width: 33px;
+		height: 45px;
+		border-radius: 50%;
+		transform: rotate(7deg);
+		@include position(absolute, 74px, unset, -2px, unset); 
+	}
+	.right-cheek {
+		background-color: $main-color;
+		width: 33px;
+		height: 52px;
+		border-radius: 50%;
+		transform: rotate(-11deg);
+		@include position(absolute, 55px, unset, unset, -5px);
+	}
+}
+.eyes {
+	.eye {
+		background-color: $eye-base-color;
+		width: 28px;
+		height: 26px;
+		border-radius: 47%;
+
+		.eye-ball {
+			background-color: $eye-ball-color;
+			width: 11px;
+			height: 11px;
+			border-radius: 50%;
+			&::after {
+				content: "";
+				background-color: $eye-base-color;
+				width: 3px;
+				height: 3px;
+				border-radius: 50%;
+				@include position(absolute, 3px, unset, 2px, unset);
+			}
+		}
+	}
+	.left-eye {
+		@extend .eye;
+		@include position(absolute, 38px, unset, 34px, unset);
+		.left-eye-ball {
+			@extend .eye-ball;
+			@include position(absolute, 7px, unset, 11px, unset);	
+		}
+	}
+	.right-eye {
+		@extend .eye;
+		@include position(absolute, 38px, unset, unset, 24px);
+		.right-eye-ball {
+			@extend .eye-ball;
+			@include position(absolute, 7px, unset, unset, 11px);	
+		}	
+	}
+}
+.nose {
+	background-color: $stroke-color;
+	width: 25px;
+	height: 7px;
+	border-radius: 50%;
+	@include position(absolute, 54px, unset, 86px, unset);
+	&::after {
+		content: "";
+		width: 0;
+		height: 0;
+		border-top: 7px solid $stroke-color;
+		border-left: 12.5px solid transparent;
+		border-right: 12.5px solid transparent;
+		@include position(absolute, 3px, unset, 1px, unset);
+	}
+}
+.mouth {
+	background-color: $stroke-color;
+	width: 6px;
+	height: 2px;
+	border-radius: 6px 6px 10% 10%;
+	transform: rotate(-20deg);
+	@include position(absolute, 224px - 140px + 12px, unset, ($head-width - 6px) / 2 + 8px, unset);
+}
+
+// Whiskers
+$whisker-left: true;
+$whisker-right: false;	
+.left-whiskers {
+	@include whisker($whisker-left, 1, 0.9, 10deg);		
+	@include whisker($whisker-left, 2, 1,   5deg);		
+	@include whisker($whisker-left, 3, 0.9, -10deg);		
+}
+.right-whiskers {
+	@include whisker($whisker-right, 1, 0.8, -15deg);
+	@include whisker($whisker-right, 2, 1,   0deg);
+	@include whisker($whisker-right, 3, 0.9, 5deg);
+}
+
+// Body
+.body {
+	background-color: $main-color;
+	width: $body-width;
+	height: $body-height;
+	border-radius: 50% 50% 50% 50%; 
+	@include position(absolute, 130px, unset, ($canvas-width - $body-width) / 2, unset);
+	// z-index: 0;
+
+	&::after {
+		// Hide the bottom
+		content: "";
+		background-color: $bg-color;
+		// background-color: #fff;
+		width: 100%;
+		height: 32%;
+		@include position(absolute, unset, 0px, 0, unset);
+
+	}
+}
+
+.belly {
+	$belly-width: 210px;
+	background-color: $bg-color;
+	width: $belly-width;
+	height: 235px;
+	border-radius: 50% 50% 30% 30%;
+	@include position(absolute, 65px, unset, ($body-width - $belly-width) / 2 + 5px, unset);
+}
+
+.belly-furs {
+	.belly-fur {
+		background-color: $belly-fur-color;
+		width: 36px;
+		height: 36px;
+		border-radius: 7px;
+		border-top-right-radius: 12px;
+		transform: rotate(-45deg);
+		&::after {
+			content: "";
+			background-color: $bg-color;
+			width: 35px;
+			height: 35px;
+			border-radius: 7px;
+			border-top-right-radius: 12px;
+			transform: skew(10deg, 10deg);
+			@include position(absolute, unset, -6px, -6px, unset);
+		}
+	}
+
+	@mixin belly-fur($number, $rotateDeg: 0deg, $skewX: 0deg, $skewY: 0deg, $scale: 1) {
+		$based-rotateDeg: -45deg;
+		@extend .belly-fur;
+		transform: rotate($based-rotateDeg + $rotateDeg) skew($skewX, $skewY) scale($scale);
+	}
+	
+	// @mixin belly-fur($number, $rotateDeg, $skewX, $skewY, $scale)
+	// Line-1
+	.belly-fur-1 {
+		@include belly-fur(1, -5deg, 10deg, -5deg, 0.75);
+		@include position(absolute, 33px, unset, 35px, unset);	
+	}
+	.belly-fur-2 {
+		@include belly-fur(2, 3deg, 10deg, 0deg, 0.8);
+		@include position(absolute, 23px, unset, 85px, unset);	
+	}
+	.belly-fur-3 {
+		@include belly-fur(3, 5deg, -5deg, 10deg, 0.75);
+		@include position(absolute, 30px, unset, unset, 35px);	
+	}
+	// Line-2
+	.belly-fur-4 {
+		@include belly-fur(4, -30deg, -10deg, 20deg, 0.6);
+		@include position(absolute, 65px, unset, 20px, unset);	
+	}
+	.belly-fur-5 {
+		@include belly-fur(5, -25deg, -15deg, 20deg, 0.55);
+		@include position(absolute, 55px, unset, 60px, unset);	
+	}
+	.belly-fur-6 {
+		@include belly-fur(6, -15deg, -15deg, 25deg, 0.6);
+		@include position(absolute, 53px, unset, unset, 67px);	
+	}
+	.belly-fur-7 {
+		@include belly-fur(7, -5deg, -10deg, 20deg, 0.55);
+		@include position(absolute, 63px, unset, unset, 20px);	
+	}		
+}
+
+// Text
+h1 {
+	color: $main-color;
+	color: $stroke-color;
+	text-align: right;
+	font-size: 4.5rem;
+	font-weight: normal;
+	transform: rotate(-5deg);
+	position: relative;
+	top: -20px;
+	right: -5px;
+}
