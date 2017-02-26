@@ -72,10 +72,10 @@ I also tried to add some animations on the eye. Since the eye was not symmetric 
 	
 	Current color theme.
 
-	![Tiger: color theme 1](/final-1.jpg)
+	![Tiger: color theme 1](final-1.jpg)
 
 - Color Theme 2 
 	
 	Uncomment out line 18 ~ 20 in `tiger.scss`, and re-complie it. 
 
-	![Tiger: color theme 2](/final-2.jpg)
+	![Tiger: color theme 2](final-2.jpg)
