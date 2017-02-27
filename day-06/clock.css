@@ -45,8 +45,7 @@ h1 {
     opacity: 0.2;
     position: absolute;
     top: -31.8px;
-    left: -13.5px;
-    z-index: 1; }
+    left: -13.5px; }
 
 .digit-frame {
   width: 55px;
