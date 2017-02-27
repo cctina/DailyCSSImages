@@ -1,0 +1,249 @@
+// ------ Note ------
+// !High Performance Animations!
+// (https://www.html5rocks.com/en/tutorials/speed/high-performance-animations/)
+// 4 things a browser can animate cheaply:
+// (1) Position: 	transform: translate(npx, npx);
+// (2) Scale: 		transform: scale(n);
+// (3) Rotation: 	trnasform: rotate(ndeg);
+// (4) Opacity: 	opacity: 0...1;
+
+// ------ Varibales ------
+// (1) Sizes
+// canvas
+$canvas-width: 500px;
+$canvas-height: 350px;
+// digits
+$digit-size: 100px;
+$digit-width: 55px;
+$digit-height: 100px;
+$digit-spacing: 5px;
+// digit-scale
+$small-scale: 0.5;
+$ampm-scale: 1 - $small-scale - 0.2;
+
+// (2) colors
+$bg-color: #47B9D3;
+$clock-color: #222;
+$clock-border-color: #000;
+$digit-color: #4bfd51;
+
+// ------ Mixins (Global) ------
+@mixin position($pos-type, $distTop: unset, $distBottom: unset, $distLeft: unset, $distRight: unset) {
+	position: $pos-type;
+	top: $distTop;
+	bottom: $distBottom;
+	left: $distLeft;
+	right: $distRight;
+}
+
+// ------ CSS Classes ------
+*, *::before, *::after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background-color: $bg-color;
+	font-family: monospace;
+	text-shadow: 0 0 15px rgba(75, 253, 81, 0.4);
+}
+
+.container {
+	width: $canvas-width;
+	height: $canvas-height;
+	margin: 100px auto 180px auto;
+	// position: relative;
+}
+
+section {
+	margin: 0 auto;
+}
+
+h1 {
+	font-family: 'Permanent Marker', cursive;
+	font-size: 3em;
+	color: #CBF2F7;
+	text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+	text-align: left;
+	display: block;
+	margin: 0 0 10px 40px;
+}
+
+.clock {
+	$clock-width: ($digit-width + $digit-spacing) * 6.8;
+	$clock-height: $digit-height + 6px;
+	box-sizing: content-box;
+	margin: 0 auto;
+	background-color: $clock-color;
+	border: 6px solid $clock-border-color;
+	padding-left: 13px;	
+	width: $clock-width;
+	height: $clock-height;
+	border-radius: 10px;
+	overflow: hidden;
+	position: relative;
+
+	&::after {
+		// $light-width: $clock-width + 13px;
+		$light-width: $clock-width + 40px;
+		$light-height: $clock-height * 3/4;
+		content: "";
+		background-color: #fff;
+		width: $light-width;
+		height: $light-height;
+		border-radius: 50%;
+		opacity: 0.2;
+		position: absolute;
+		// top: 0;
+		// left: 0;
+		top: -($light-height * 2/5);
+		left: -(40px - 13px) / 2;
+		z-index: 1;
+	}
+}
+
+.digit-frame {
+	width: $digit-width;
+	height: $digit-height;
+	// border: 2px solid #eee;
+	margin-right: 5px;
+	float: left;
+	overflow: hidden;
+	position: relative;
+}
+.digit-frame-small {
+	width: $digit-width * $small-scale;
+	height: $digit-height * $small-scale;
+}
+.digit {
+	font-size: $digit-size;
+	letter-spacing: $digit-spacing;
+	color: $digit-color;
+	width: $digit-width + $digit-spacing;
+	height: 100%;
+	line-height: 100%;
+	// vertical-align: middle;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+}
+@mixin digit-all($digit-count, $keyframes-name, $animation-period, $scale) {
+	@extend .digit;
+	$size: $digit-size * $scale;
+	$width: $digit-width * $scale;
+	$spacing: $digit-spacing * $scale;
+	$total-width: ($width + $spacing) * $digit-count; 
+	// width: $width;
+	width: $total-width;
+	height: 100px * $scale;
+	font-size: $size;
+	letter-spacing: $spacing;
+	animation: $keyframes-name $animation-period steps($digit-count) infinite;
+	
+	@keyframes #{$keyframes-name} {
+		100% { 
+			transform: translateX( -($total-width) );	//better performance!
+			// left: -($total-width);
+		}
+	}
+}
+
+.digit-all-hr-1 {
+	$digit-count: 3;
+	$keyframes-name: play-hr-1;
+	$animation-period: 3600*24s;
+	@include digit-all($digit-count, $keyframes-name, $animation-period, 1);
+}
+.digit-all-hr-2 {
+	$digit-count: 10;
+	$keyframes-name: play-hr-2;
+	$animation-period: 3600*10s;
+	@include digit-all($digit-count, $keyframes-name, $animation-period, 1);
+}
+.digit-all-min-1 {
+	$digit-count: 6;
+	$keyframes-name: play-min-1;
+	$animation-period: 60*60s;
+	@include digit-all($digit-count, $keyframes-name, $animation-period, 1);
+}
+.digit-all-min-2 {
+	$digit-count: 10;
+	$keyframes-name: play-min-2;
+	$animation-period: 60*10s;
+	@include digit-all($digit-count, $keyframes-name, $animation-period, 1);
+}
+.digit-all-sec-1 {
+	$digit-count: 6;
+	$keyframes-name: play-sec-1;
+	$animation-period: 60s;
+	@include digit-all($digit-count, $keyframes-name, $animation-period, $small-scale);
+}
+.digit-all-sec-2 {
+	$digit-count: 10;
+	$keyframes-name: play-sec-2;
+	$animation-period: 10s;
+	@include digit-all($digit-count, $keyframes-name, $animation-period, $small-scale);
+}
+
+.space {
+	width: 30px;
+	height: $digit-height;
+	float: left;
+	position: relative;
+}
+
+.mix-frame {
+	$digit-margin: 5px;
+	width: ($digit-width + $digit-spacing + $digit-margin) * 2 * $small-scale;
+	overflow: auto;
+	float: left;
+	position: relative;
+}
+
+.ampm-frame {
+	margin: 10px 0 0;
+	width: 100%;
+	height: $digit-height * $ampm-scale;
+	float: left;
+	position: relative;
+	animation: flash 4s step-start infinite;
+}
+.am, .pm {
+	width: 100%;
+	font-size: $digit-size * $ampm-scale;
+	letter-spacing: 6px;
+	color: $digit-color;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	text-align: center;
+}
+.am {
+	opacity: 1;
+	animation: switch-am 2*3600*24s step-start infinite;
+}
+.pm {
+	opacity: 0;
+	animation: switch-pm 2*3600*24s step-start infinite;
+}
+.clear {
+	clear: left;
+}
+
+@keyframes switch-am {
+	 50% { opacity: 1; }
+	100% { opacity: 0; }
+}
+
+@keyframes switch-pm {
+	 50% { opacity: 0; }
+	100% { opacity: 1; }
+}
+
+@keyframes flash {
+ 	 25% { opacity: 1; }
+ 	 50% { opacity: 1; }
+ 	 75% { opacity: 1; }
+ 	100% { opacity: 0; }
+}
