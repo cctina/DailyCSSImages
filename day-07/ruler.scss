@@ -1,0 +1,35 @@
+// ------ Varibales ------
+// (1) Sizes
+// canvas
+$canvas-width: 400px;
+$canvas-height: 400px;
+
+// (2) colors
+$bg-color: #47B9D3;
+
+// ------ Mixins (Global) ------
+@mixin position($pos-type, $distTop: unset, $distBottom: unset, $distLeft: unset, $distRight: unset) {
+	position: $pos-type;
+	top: $distTop;
+	bottom: $distBottom;
+	left: $distLeft;
+	right: $distRight;
+}
+
+// ------ CSS Classes ------
+*, *::before, *::after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background-color: $bg-color;
+}
+
+.container {
+	width: $canvas-width;
+	height: $canvas-height;
+	margin: 0 auto;
+	position: relative;
+}

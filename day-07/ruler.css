@@ -1,0 +1,15 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0; }
+
+body {
+  background-color: #47B9D3; }
+
+.container {
+  width: 400px;
+  height: 400px;
+  margin: 0 auto;
+  position: relative; }
+
+/*# sourceMappingURL=ruler.css.map */
