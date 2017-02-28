@@ -6,3 +6,4 @@ My "Daily CSS Images" 50-day challenge notes.
 3. Day 3 - [Beaver](/day-03)
 4. Day 4 - [Tiger](/day-04)
 5. Day 5 - [Favorite Animated Animal](/day-05)
+6. Day 6 - [Clock](/day-06)
