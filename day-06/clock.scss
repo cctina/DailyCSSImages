@@ -14,8 +14,8 @@ $canvas-width: 500px;
 $canvas-height: 350px;
 // digits
 $digit-size: 100px;
-$digit-width: 55px;
-$digit-height: 100px;
+$digit-width: 60px; //55px
+$digit-height: 110px; //100px
 $digit-spacing: 5px;
 // digit-scale
 $small-scale: 0.5;
@@ -45,7 +45,9 @@ $digit-color: #4bfd51;
 
 body {
 	background-color: $bg-color;
-	font-family: monospace;
+	// font-family: monospace;
+	// font-family: 'Oxygen Mono', monospace;
+	font-family: 'PT Mono', monospace;
 	text-shadow: 0 0 15px rgba(75, 253, 81, 0.4);
 }
 
