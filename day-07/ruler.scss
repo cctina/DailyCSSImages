@@ -1,11 +1,28 @@
+// ------ Note ------
+// Made the pixel images by using tool - "Piskel"
+// Link: http://www.piskelapp.com/
+
 // ------ Varibales ------
 // (1) Sizes
 // canvas
-$canvas-width: 400px;
-$canvas-height: 400px;
+$canvas-width: 30vw;
+$canvas-height: 16vw;
 
 // (2) colors
-$bg-color: #47B9D3;
+$bg-color: #ed3170;
+// title color
+$title-color: #722;
+// pencil color
+$pencil-light-color: #ffd433;
+$pencil-dark-color: #ffca00;
+$pencil-head-color: #b0723a;
+$pencil-line-color: #111;
+// ruler color
+$ruler-main-color: #ffca00;
+$ruler-light-color: #ffd433;
+$ruler-dark-color: #d0a605;
+$shadow-color: #a44;
+$light-color: #fff;
 
 // ------ Mixins (Global) ------
 @mixin position($pos-type, $distTop: unset, $distBottom: unset, $distLeft: unset, $distRight: unset) {
@@ -25,11 +42,324 @@ $bg-color: #47B9D3;
 
 body {
 	background-color: $bg-color;
+	height: 100vh;
+	padding: 25vh;
+	font-family: 'Press Start 2P', cursive;
 }
 
 .container {
+	// border: 1vw dashed #fff;
 	width: $canvas-width;
 	height: $canvas-height;
 	margin: 0 auto;
+	overflow: hidden;
+	transform: scale(1);
 	position: relative;
 }
+
+.border {
+	box-sizing: content-box;	
+	border: 1vw dashed #555;
+	margin: 0 0;
+	height: 15vw;
+	width: 30vw;
+}
+
+.flash {
+	margin: 0 auto;
+	height: 1vw;
+	width: 1vw;
+	position: absolute;
+	top: 4vw;
+	left: 0vw;
+	box-shadow: 
+	//-------- 1st slot --------
+		// --- line 0
+		 3vw 0vw 0 0 $light-color,
+		// --- line 1
+		 2vw 1vw 0 0 $light-color,
+		 3vw 1vw 0 0 $light-color,
+		 4vw 1vw 0 0 $light-color,
+		// --- line 2
+		 3vw 2vw 0 0 $light-color,
+	//-------- 2st slot -------- (+30)
+		// --- line 0: 10
+		40vw 0vw 0 0 $light-color,
+		// --- line 1: 4, 6-11
+		34vw 1vw 0 0 $light-color,
+		36vw 1vw 0 0 $light-color,
+		37vw 1vw 0 0 $light-color,
+		38vw 1vw 0 0 $light-color,
+		39vw 1vw 0 0 $light-color,
+		40vw 1vw 0 0 $light-color,
+		41vw 1vw 0 0 $light-color,
+		// --- line 2: 10
+		40vw 2vw 0 0 $light-color,
+	//-------- 3st slot -------- (+60)
+		// --- line 0: 18
+		78vw 0vw 0 0 $light-color,
+		// --- line 1: 4, 6, 8, 9-19
+		64vw 1vw 0 0 $light-color,
+		66vw 1vw 0 0 $light-color,
+		68vw 1vw 0 0 $light-color,
+		69vw 1vw 0 0 $light-color,
+		70vw 1vw 0 0 $light-color,
+		72vw 1vw 0 0 $light-color,
+		73vw 1vw 0 0 $light-color,
+		74vw 1vw 0 0 $light-color,
+		75vw 1vw 0 0 $light-color,
+		76vw 1vw 0 0 $light-color,
+		77vw 1vw 0 0 $light-color,
+		78vw 1vw 0 0 $light-color,
+		79vw 1vw 0 0 $light-color,
+		// --- line 2: 18
+		78vw 2vw 0 0 $light-color,	
+	// -------- 4th slot -------- (+90)
+		// --- line (-3): 27
+		117vw -3vw 0 0 $light-color,
+		// --- line (-2): 26, 28
+		116vw -2vw 0 0 $light-color,
+		118vw -2vw 0 0 $light-color,
+		// --- line (-1): 27
+		117vw -1vw 0 0 $light-color,
+		// --- line 0: 24
+		115vw 0vw 0 0 $light-color,
+		// --- line 1: 20, 22-24
+		110vw 1vw 0 0 $light-color,
+		112vw 1vw 0 0 $light-color,
+		113vw 1vw 0 0 $light-color,
+		114vw 1vw 0 0 $light-color,
+	// -------- 5th slot -------- (+120)
+		// --- line (-4): 28
+		148vw -4vw 0 0 $light-color,
+		// --- line (-3): 28-29
+		148vw -3vw 0 0 $light-color,
+		149vw -3vw 0 0 $light-color;
+	z-index: 1;
+	animation: play 2s steps(10, end) infinite; 
+}
+
+.ruler {
+	margin: 0 auto;
+	height: 1vw;
+	width: 1vw;
+	position: absolute;
+	top: 4vw;
+	left: 0vw;
+	box-shadow: 
+		// --- line 1
+		 1vw 1vw 0 0 $ruler-dark-color,
+		 2vw 1vw 0 0 $ruler-dark-color,
+		 3vw 1vw 0 0 $ruler-dark-color,
+		 4vw 1vw 0 0 $ruler-dark-color,
+		 5vw 1vw 0 0 $ruler-dark-color,
+		 6vw 1vw 0 0 $ruler-dark-color,
+		 7vw 1vw 0 0 $ruler-dark-color,
+		 8vw 1vw 0 0 $ruler-dark-color,
+		 9vw 1vw 0 0 $ruler-dark-color,
+		10vw 1vw 0 0 $ruler-dark-color,
+		11vw 1vw 0 0 $ruler-dark-color,
+		12vw 1vw 0 0 $ruler-dark-color,
+		13vw 1vw 0 0 $ruler-dark-color,
+		14vw 1vw 0 0 $ruler-dark-color,
+		15vw 1vw 0 0 $ruler-dark-color,
+		16vw 1vw 0 0 $ruler-dark-color,
+		17vw 1vw 0 0 $ruler-dark-color,
+		18vw 1vw 0 0 $ruler-dark-color,
+		19vw 1vw 0 0 $ruler-dark-color,
+		20vw 1vw 0 0 $ruler-dark-color,
+		21vw 1vw 0 0 $ruler-dark-color,
+		22vw 1vw 0 0 $ruler-dark-color,
+		23vw 1vw 0 0 $ruler-dark-color,
+		24vw 1vw 0 0 $ruler-dark-color,
+		25vw 1vw 0 0 $ruler-dark-color,
+		// --- line 2 
+		 1vw 2vw 0 0 $ruler-dark-color,
+		 2vw 2vw 0 0 $ruler-main-color,
+		 3vw 2vw 0 0 $ruler-dark-color,
+		 4vw 2vw 0 0 $ruler-main-color,
+		 5vw 2vw 0 0 $ruler-dark-color,
+		 6vw 2vw 0 0 $ruler-main-color,
+		 7vw 2vw 0 0 $ruler-dark-color,
+		 8vw 2vw 0 0 $ruler-main-color,
+		 9vw 2vw 0 0 $ruler-dark-color,
+		10vw 2vw 0 0 $ruler-main-color,
+		11vw 2vw 0 0 $ruler-dark-color,
+		12vw 2vw 0 0 $ruler-main-color,
+		13vw 2vw 0 0 $ruler-dark-color,
+		14vw 2vw 0 0 $ruler-main-color,
+		15vw 2vw 0 0 $ruler-dark-color,
+		16vw 2vw 0 0 $ruler-main-color,
+		17vw 2vw 0 0 $ruler-dark-color,
+		18vw 2vw 0 0 $ruler-main-color,
+		19vw 2vw 0 0 $ruler-dark-color,
+		20vw 2vw 0 0 $ruler-main-color,
+		21vw 2vw 0 0 $ruler-dark-color,
+		22vw 2vw 0 0 $ruler-main-color,
+		23vw 2vw 0 0 $ruler-dark-color,
+		24vw 2vw 0 0 $ruler-light-color,
+		25vw 2vw 0 0 $ruler-dark-color,
+		26vw 2vw 0 0 $shadow-color,
+		// --- line 3
+		 1vw 3vw 0 0 $ruler-dark-color,
+		 2vw 3vw 0 0 $ruler-main-color,
+		 3vw 3vw 0 0 $ruler-dark-color,
+		 4vw 3vw 0 0 $ruler-main-color,
+		 5vw 3vw 0 0 $ruler-dark-color,
+		 6vw 3vw 0 0 $ruler-main-color,
+		 7vw 3vw 0 0 $ruler-dark-color,
+		 8vw 3vw 0 0 $ruler-main-color,
+		 9vw 3vw 0 0 $ruler-dark-color,
+		10vw 3vw 0 0 $ruler-main-color,
+		11vw 3vw 0 0 $ruler-dark-color,
+		12vw 3vw 0 0 $ruler-main-color,
+		13vw 3vw 0 0 $ruler-dark-color,
+		14vw 3vw 0 0 $ruler-main-color,
+		15vw 3vw 0 0 $ruler-dark-color,
+		16vw 3vw 0 0 $ruler-main-color,
+		17vw 3vw 0 0 $ruler-dark-color,
+		18vw 3vw 0 0 $ruler-main-color,
+		19vw 3vw 0 0 $ruler-dark-color,
+		20vw 3vw 0 0 $ruler-main-color,
+		21vw 3vw 0 0 $ruler-dark-color,
+		22vw 3vw 0 0 $ruler-main-color,
+		23vw 3vw 0 0 $ruler-dark-color,
+		24vw 3vw 0 0 $ruler-light-color,
+		25vw 3vw 0 0 $ruler-dark-color,
+		26vw 3vw 0 0 $shadow-color,
+		// --- line 4
+		 1vw 4vw 0 0 $ruler-dark-color,
+		 2vw 4vw 0 0 $ruler-main-color,
+		 3vw 4vw 0 0 $ruler-main-color,
+		 4vw 4vw 0 0 $ruler-main-color,
+		 5vw 4vw 0 0 $ruler-main-color,
+		 6vw 4vw 0 0 $ruler-main-color,
+		 7vw 4vw 0 0 $ruler-dark-color,
+		 8vw 4vw 0 0 $ruler-main-color,
+		 9vw 4vw 0 0 $ruler-main-color,
+		10vw 4vw 0 0 $ruler-main-color,
+		11vw 4vw 0 0 $ruler-main-color,
+		12vw 4vw 0 0 $ruler-main-color,
+		13vw 4vw 0 0 $ruler-dark-color,
+		14vw 4vw 0 0 $ruler-main-color,
+		15vw 4vw 0 0 $ruler-main-color,
+		16vw 4vw 0 0 $ruler-main-color,
+		17vw 4vw 0 0 $ruler-main-color,
+		18vw 4vw 0 0 $ruler-main-color,
+		19vw 4vw 0 0 $ruler-dark-color,
+		20vw 4vw 0 0 $ruler-main-color,
+		21vw 4vw 0 0 $ruler-main-color,
+		22vw 4vw 0 0 $ruler-main-color,
+		23vw 4vw 0 0 $ruler-main-color,
+		24vw 4vw 0 0 $ruler-light-color,
+		25vw 4vw 0 0 $ruler-dark-color,
+		26vw 4vw 0 0 $shadow-color,
+		// --- line 5
+		 1vw 5vw 0 0 $ruler-dark-color,
+		 2vw 5vw 0 0 $ruler-light-color,
+		 3vw 5vw 0 0 $ruler-light-color,
+		 4vw 5vw 0 0 $ruler-light-color,
+		 5vw 5vw 0 0 $ruler-light-color,
+		 6vw 5vw 0 0 $ruler-light-color,
+		 7vw 5vw 0 0 $ruler-light-color,
+		 8vw 5vw 0 0 $ruler-light-color,
+		 9vw 5vw 0 0 $ruler-light-color,
+		10vw 5vw 0 0 $ruler-light-color,
+		11vw 5vw 0 0 $ruler-light-color,
+		12vw 5vw 0 0 $ruler-light-color,
+		13vw 5vw 0 0 $ruler-light-color,
+		14vw 5vw 0 0 $ruler-light-color,
+		15vw 5vw 0 0 $ruler-light-color,
+		16vw 5vw 0 0 $ruler-light-color,
+		17vw 5vw 0 0 $ruler-light-color,
+		18vw 5vw 0 0 $ruler-light-color,
+		19vw 5vw 0 0 $ruler-light-color,
+		20vw 5vw 0 0 $ruler-light-color,
+		21vw 5vw 0 0 $ruler-light-color,
+		22vw 5vw 0 0 $ruler-light-color,
+		23vw 5vw 0 0 $ruler-light-color,
+		24vw 5vw 0 0 $ruler-light-color,
+		25vw 5vw 0 0 $ruler-dark-color,
+		26vw 5vw 0 0 $shadow-color,
+		// --- line 6
+		 1vw 6vw 0 0 $ruler-dark-color,
+		 2vw 6vw 0 0 $ruler-dark-color,
+		 3vw 6vw 0 0 $ruler-dark-color,
+		 4vw 6vw 0 0 $ruler-dark-color,
+		 5vw 6vw 0 0 $ruler-dark-color,
+		 6vw 6vw 0 0 $ruler-dark-color,
+		 7vw 6vw 0 0 $ruler-dark-color,
+		 8vw 6vw 0 0 $ruler-dark-color,
+		 9vw 6vw 0 0 $ruler-dark-color,
+		10vw 6vw 0 0 $ruler-dark-color,
+		11vw 6vw 0 0 $ruler-dark-color,
+		12vw 6vw 0 0 $ruler-dark-color,
+		13vw 6vw 0 0 $ruler-dark-color,
+		14vw 6vw 0 0 $ruler-dark-color,
+		15vw 6vw 0 0 $ruler-dark-color,
+		16vw 6vw 0 0 $ruler-dark-color,
+		17vw 6vw 0 0 $ruler-dark-color,
+		18vw 6vw 0 0 $ruler-dark-color,
+		19vw 6vw 0 0 $ruler-dark-color,
+		20vw 6vw 0 0 $ruler-dark-color,
+		21vw 6vw 0 0 $ruler-dark-color,
+		22vw 6vw 0 0 $ruler-dark-color,
+		23vw 6vw 0 0 $ruler-dark-color,
+		24vw 6vw 0 0 $ruler-dark-color,
+		25vw 6vw 0 0 $ruler-dark-color,
+		26vw 6vw 0 0 $shadow-color,
+		// --- line 7: shadow
+		 // 1vw 7vw 0 0 $shadow-color,
+		 2vw 7vw 0 0 $shadow-color,
+		 3vw 7vw 0 0 $shadow-color,
+		 4vw 7vw 0 0 $shadow-color,
+		 5vw 7vw 0 0 $shadow-color,
+		 6vw 7vw 0 0 $shadow-color,
+		 7vw 7vw 0 0 $shadow-color,
+		 8vw 7vw 0 0 $shadow-color,
+		 9vw 7vw 0 0 $shadow-color,
+		10vw 7vw 0 0 $shadow-color,
+		11vw 7vw 0 0 $shadow-color,
+		12vw 7vw 0 0 $shadow-color,
+		13vw 7vw 0 0 $shadow-color,
+		14vw 7vw 0 0 $shadow-color,
+		15vw 7vw 0 0 $shadow-color,
+		16vw 7vw 0 0 $shadow-color,
+		17vw 7vw 0 0 $shadow-color,
+		18vw 7vw 0 0 $shadow-color,
+		19vw 7vw 0 0 $shadow-color,
+		20vw 7vw 0 0 $shadow-color,
+		21vw 7vw 0 0 $shadow-color,
+		22vw 7vw 0 0 $shadow-color,
+		23vw 7vw 0 0 $shadow-color,
+		24vw 7vw 0 0 $shadow-color,
+		25vw 7vw 0 0 $shadow-color,
+		26vw 7vw 0 0 $shadow-color;
+}
+
+.words {
+	margin: 0 auto;
+	width: $canvas-width + 10vw;
+	height: auto;
+	position: relative;
+	
+	& h1 {
+		color: #333;
+		font-size: 2vw;
+		position: absolute;
+		top: 0;
+		left: 8vw;
+	}
+}
+
+@keyframes play {
+	// 10 slots in total, only slot 1-5 have animations
+	  0% { transform: translateX(30vw); }   	// slot 0 -> intial
+	  // 0% { transform: translateX(0vw); }		// slot 1
+  	 // 20% { transform: translateX(-30vw); }	// slot 2
+	 // 40% { transform: translateX(-60vw); }	// slot 3
+	 // 60% { transform: translateX(-90vw); }	// slot 4
+	 // 60% { transform: translateX(-90vw); } 	// slot 5
+	 100% { transform: translateX(-270vw); }	// slot 6-10 -> intial
+}
+

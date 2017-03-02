@@ -4,12 +4,62 @@
   padding: 0; }
 
 body {
-  background-color: #47B9D3; }
+  background-color: #ed3170;
+  height: 100vh;
+  padding: 25vh;
+  font-family: 'Press Start 2P', cursive; }
 
 .container {
-  width: 400px;
-  height: 400px;
+  width: 30vw;
+  height: 16vw;
   margin: 0 auto;
+  overflow: hidden;
+  transform: scale(1);
   position: relative; }
+
+.border {
+  box-sizing: content-box;
+  border: 1vw dashed #555;
+  margin: 0 0;
+  height: 15vw;
+  width: 30vw; }
+
+.flash {
+  margin: 0 auto;
+  height: 1vw;
+  width: 1vw;
+  position: absolute;
+  top: 4vw;
+  left: 0vw;
+  box-shadow: 3vw 0vw 0 0 #fff, 2vw 1vw 0 0 #fff, 3vw 1vw 0 0 #fff, 4vw 1vw 0 0 #fff, 3vw 2vw 0 0 #fff, 40vw 0vw 0 0 #fff, 34vw 1vw 0 0 #fff, 36vw 1vw 0 0 #fff, 37vw 1vw 0 0 #fff, 38vw 1vw 0 0 #fff, 39vw 1vw 0 0 #fff, 40vw 1vw 0 0 #fff, 41vw 1vw 0 0 #fff, 40vw 2vw 0 0 #fff, 78vw 0vw 0 0 #fff, 64vw 1vw 0 0 #fff, 66vw 1vw 0 0 #fff, 68vw 1vw 0 0 #fff, 69vw 1vw 0 0 #fff, 70vw 1vw 0 0 #fff, 72vw 1vw 0 0 #fff, 73vw 1vw 0 0 #fff, 74vw 1vw 0 0 #fff, 75vw 1vw 0 0 #fff, 76vw 1vw 0 0 #fff, 77vw 1vw 0 0 #fff, 78vw 1vw 0 0 #fff, 79vw 1vw 0 0 #fff, 78vw 2vw 0 0 #fff, 117vw -3vw 0 0 #fff, 116vw -2vw 0 0 #fff, 118vw -2vw 0 0 #fff, 117vw -1vw 0 0 #fff, 115vw 0vw 0 0 #fff, 110vw 1vw 0 0 #fff, 112vw 1vw 0 0 #fff, 113vw 1vw 0 0 #fff, 114vw 1vw 0 0 #fff, 148vw -4vw 0 0 #fff, 148vw -3vw 0 0 #fff, 149vw -3vw 0 0 #fff;
+  z-index: 1;
+  animation: play 2s steps(10, end) infinite; }
+
+.ruler {
+  margin: 0 auto;
+  height: 1vw;
+  width: 1vw;
+  position: absolute;
+  top: 4vw;
+  left: 0vw;
+  box-shadow: 1vw 1vw 0 0 #d0a605, 2vw 1vw 0 0 #d0a605, 3vw 1vw 0 0 #d0a605, 4vw 1vw 0 0 #d0a605, 5vw 1vw 0 0 #d0a605, 6vw 1vw 0 0 #d0a605, 7vw 1vw 0 0 #d0a605, 8vw 1vw 0 0 #d0a605, 9vw 1vw 0 0 #d0a605, 10vw 1vw 0 0 #d0a605, 11vw 1vw 0 0 #d0a605, 12vw 1vw 0 0 #d0a605, 13vw 1vw 0 0 #d0a605, 14vw 1vw 0 0 #d0a605, 15vw 1vw 0 0 #d0a605, 16vw 1vw 0 0 #d0a605, 17vw 1vw 0 0 #d0a605, 18vw 1vw 0 0 #d0a605, 19vw 1vw 0 0 #d0a605, 20vw 1vw 0 0 #d0a605, 21vw 1vw 0 0 #d0a605, 22vw 1vw 0 0 #d0a605, 23vw 1vw 0 0 #d0a605, 24vw 1vw 0 0 #d0a605, 25vw 1vw 0 0 #d0a605, 1vw 2vw 0 0 #d0a605, 2vw 2vw 0 0 #ffca00, 3vw 2vw 0 0 #d0a605, 4vw 2vw 0 0 #ffca00, 5vw 2vw 0 0 #d0a605, 6vw 2vw 0 0 #ffca00, 7vw 2vw 0 0 #d0a605, 8vw 2vw 0 0 #ffca00, 9vw 2vw 0 0 #d0a605, 10vw 2vw 0 0 #ffca00, 11vw 2vw 0 0 #d0a605, 12vw 2vw 0 0 #ffca00, 13vw 2vw 0 0 #d0a605, 14vw 2vw 0 0 #ffca00, 15vw 2vw 0 0 #d0a605, 16vw 2vw 0 0 #ffca00, 17vw 2vw 0 0 #d0a605, 18vw 2vw 0 0 #ffca00, 19vw 2vw 0 0 #d0a605, 20vw 2vw 0 0 #ffca00, 21vw 2vw 0 0 #d0a605, 22vw 2vw 0 0 #ffca00, 23vw 2vw 0 0 #d0a605, 24vw 2vw 0 0 #ffd433, 25vw 2vw 0 0 #d0a605, 26vw 2vw 0 0 #a44, 1vw 3vw 0 0 #d0a605, 2vw 3vw 0 0 #ffca00, 3vw 3vw 0 0 #d0a605, 4vw 3vw 0 0 #ffca00, 5vw 3vw 0 0 #d0a605, 6vw 3vw 0 0 #ffca00, 7vw 3vw 0 0 #d0a605, 8vw 3vw 0 0 #ffca00, 9vw 3vw 0 0 #d0a605, 10vw 3vw 0 0 #ffca00, 11vw 3vw 0 0 #d0a605, 12vw 3vw 0 0 #ffca00, 13vw 3vw 0 0 #d0a605, 14vw 3vw 0 0 #ffca00, 15vw 3vw 0 0 #d0a605, 16vw 3vw 0 0 #ffca00, 17vw 3vw 0 0 #d0a605, 18vw 3vw 0 0 #ffca00, 19vw 3vw 0 0 #d0a605, 20vw 3vw 0 0 #ffca00, 21vw 3vw 0 0 #d0a605, 22vw 3vw 0 0 #ffca00, 23vw 3vw 0 0 #d0a605, 24vw 3vw 0 0 #ffd433, 25vw 3vw 0 0 #d0a605, 26vw 3vw 0 0 #a44, 1vw 4vw 0 0 #d0a605, 2vw 4vw 0 0 #ffca00, 3vw 4vw 0 0 #ffca00, 4vw 4vw 0 0 #ffca00, 5vw 4vw 0 0 #ffca00, 6vw 4vw 0 0 #ffca00, 7vw 4vw 0 0 #d0a605, 8vw 4vw 0 0 #ffca00, 9vw 4vw 0 0 #ffca00, 10vw 4vw 0 0 #ffca00, 11vw 4vw 0 0 #ffca00, 12vw 4vw 0 0 #ffca00, 13vw 4vw 0 0 #d0a605, 14vw 4vw 0 0 #ffca00, 15vw 4vw 0 0 #ffca00, 16vw 4vw 0 0 #ffca00, 17vw 4vw 0 0 #ffca00, 18vw 4vw 0 0 #ffca00, 19vw 4vw 0 0 #d0a605, 20vw 4vw 0 0 #ffca00, 21vw 4vw 0 0 #ffca00, 22vw 4vw 0 0 #ffca00, 23vw 4vw 0 0 #ffca00, 24vw 4vw 0 0 #ffd433, 25vw 4vw 0 0 #d0a605, 26vw 4vw 0 0 #a44, 1vw 5vw 0 0 #d0a605, 2vw 5vw 0 0 #ffd433, 3vw 5vw 0 0 #ffd433, 4vw 5vw 0 0 #ffd433, 5vw 5vw 0 0 #ffd433, 6vw 5vw 0 0 #ffd433, 7vw 5vw 0 0 #ffd433, 8vw 5vw 0 0 #ffd433, 9vw 5vw 0 0 #ffd433, 10vw 5vw 0 0 #ffd433, 11vw 5vw 0 0 #ffd433, 12vw 5vw 0 0 #ffd433, 13vw 5vw 0 0 #ffd433, 14vw 5vw 0 0 #ffd433, 15vw 5vw 0 0 #ffd433, 16vw 5vw 0 0 #ffd433, 17vw 5vw 0 0 #ffd433, 18vw 5vw 0 0 #ffd433, 19vw 5vw 0 0 #ffd433, 20vw 5vw 0 0 #ffd433, 21vw 5vw 0 0 #ffd433, 22vw 5vw 0 0 #ffd433, 23vw 5vw 0 0 #ffd433, 24vw 5vw 0 0 #ffd433, 25vw 5vw 0 0 #d0a605, 26vw 5vw 0 0 #a44, 1vw 6vw 0 0 #d0a605, 2vw 6vw 0 0 #d0a605, 3vw 6vw 0 0 #d0a605, 4vw 6vw 0 0 #d0a605, 5vw 6vw 0 0 #d0a605, 6vw 6vw 0 0 #d0a605, 7vw 6vw 0 0 #d0a605, 8vw 6vw 0 0 #d0a605, 9vw 6vw 0 0 #d0a605, 10vw 6vw 0 0 #d0a605, 11vw 6vw 0 0 #d0a605, 12vw 6vw 0 0 #d0a605, 13vw 6vw 0 0 #d0a605, 14vw 6vw 0 0 #d0a605, 15vw 6vw 0 0 #d0a605, 16vw 6vw 0 0 #d0a605, 17vw 6vw 0 0 #d0a605, 18vw 6vw 0 0 #d0a605, 19vw 6vw 0 0 #d0a605, 20vw 6vw 0 0 #d0a605, 21vw 6vw 0 0 #d0a605, 22vw 6vw 0 0 #d0a605, 23vw 6vw 0 0 #d0a605, 24vw 6vw 0 0 #d0a605, 25vw 6vw 0 0 #d0a605, 26vw 6vw 0 0 #a44, 2vw 7vw 0 0 #a44, 3vw 7vw 0 0 #a44, 4vw 7vw 0 0 #a44, 5vw 7vw 0 0 #a44, 6vw 7vw 0 0 #a44, 7vw 7vw 0 0 #a44, 8vw 7vw 0 0 #a44, 9vw 7vw 0 0 #a44, 10vw 7vw 0 0 #a44, 11vw 7vw 0 0 #a44, 12vw 7vw 0 0 #a44, 13vw 7vw 0 0 #a44, 14vw 7vw 0 0 #a44, 15vw 7vw 0 0 #a44, 16vw 7vw 0 0 #a44, 17vw 7vw 0 0 #a44, 18vw 7vw 0 0 #a44, 19vw 7vw 0 0 #a44, 20vw 7vw 0 0 #a44, 21vw 7vw 0 0 #a44, 22vw 7vw 0 0 #a44, 23vw 7vw 0 0 #a44, 24vw 7vw 0 0 #a44, 25vw 7vw 0 0 #a44, 26vw 7vw 0 0 #a44; }
+
+.words {
+  margin: 0 auto;
+  width: 40vw;
+  height: auto;
+  position: relative; }
+  .words h1 {
+    color: #333;
+    font-size: 2vw;
+    position: absolute;
+    top: 0;
+    left: 8vw; }
+
+@keyframes play {
+  0% {
+    transform: translateX(30vw); }
+  100% {
+    transform: translateX(-270vw); } }
 
 /*# sourceMappingURL=ruler.css.map */
