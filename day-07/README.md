@@ -20,8 +20,8 @@ Wanted to keep it challenging but remain some time for other work. So I made it 
 
 Thanks for many talented creators who also join this Daily CSS Images challenge. Their awesome works & techniques inspired me a lot!
 
-PS. Got a little bug after resizing the width of the window. The animation become weird and seems shifted. That because the CSS sprite technique keeps updating the current viewport size (for unit vw), but other elements don't. 
-I guess using JS to reload the page content  when resizing might be the solution. Or return to use absolute-length units like `px` might be a solution too.
+PS. Got a little bug after resizing the width of the window. The animation become weird. The CSS sprite position seems shifted. Not sure what the root cause is for now.
+I guess using JS to reload the page content when resizing might be a solution. Or return to use absolute units like `px` would avoid this bug too.
 
 ##### Keywords
 - `box-shadow`
