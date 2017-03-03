@@ -6,6 +6,15 @@
 - [Luke Skywalker Pixel Art CSS](http://codepen.io/cctina/pen/mWeeOx), by Henrique Rodrigues | CodePen.io
 - [Nodepad (CSS only - Single div)](http://codepen.io/cctina/pen/VpvNGR), by dok de leon | CodePen.io
 
+##### Tool
+- [Piskel](http://www.piskelapp.com/)
+	- A free online tool for creating Pixel Art and Animated Sprites.
+	- Pros
+		- Easy to draw pixel arts with its toolbox.
+		- You can make animations by frames.
+		- It can export images from frames for CSS sprite (animation).
+		- It can export .gif files as animation images 
+
 ### Note
 Wanted to keep it challenging but remain some time for other work. So I made it looks simple but tried something new like adapting pixel-art style, using units 'vw'/'vh' instead of 'px' etc. 
 
