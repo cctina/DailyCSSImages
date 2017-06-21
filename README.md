@@ -8,3 +8,5 @@ My "Daily CSS Images" 50-day challenge notes.
 5. Day 5 - [Favorite Animated Animal](/day-05)
 6. Day 6 - [Clock](/day-06)
 7. Day 7 - [Ruler](/day-07)
+
+The collection on [**CodePen**](https://codepen.io/collection/nxZjJV/): [https://codepen.io/collection/nxZjJV/](https://codepen.io/collection/nxZjJV/)
